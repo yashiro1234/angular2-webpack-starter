@@ -1,5 +1,6 @@
 /**
  * @author: @AngularClass
+ * npm startを実行時に読み込まれる
  */
 
 var webpack = require('webpack');
@@ -16,7 +17,7 @@ var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
  * Webpack Constants
  */
 const METADATA = {
-  title: 'Angular2 Webpack Starter by @gdi2990 from @AngularClass',
+  title: 'Angularテスト',
   baseUrl: '/'
 };
 
@@ -61,7 +62,7 @@ module.exports = {
     // See: http://webpack.github.io/docs/configuration.html#resolve-extensions
     extensions: ['', '.ts', '.js'],
 
-    // Make sure root is src
+    // ルートデイレクトリ
     root: helpers.root('src'),
 
     // remove other default values

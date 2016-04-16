@@ -1,0 +1,15 @@
+<md-card>
+  <md-card-content>
+    <span x-large>Your Content Here</span>
+
+    <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
+
+      <md-input placeholder="氏名" [value]="localState.value"
+                (input)="name = $event.target.value" autofocus>
+      </md-input>
+      <md-input placeholder="email" [value]="email" (input)="email = $event.target.email" autofocus></md-input>
+
+      <button md-raised-button color="primary">登録</button>
+    </form>
+  </md-card-content>
+</md-card>

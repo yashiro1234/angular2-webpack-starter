@@ -25,6 +25,9 @@ import {XLarge} from './x-large';
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
   template: require('./home.html')
 })
+/**
+ * homeクラス
+ */
 export class Home {
   // Set our default values
   localState = { value: '' };

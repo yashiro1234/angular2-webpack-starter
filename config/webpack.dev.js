@@ -32,6 +32,7 @@ module.exports = webpackMerge(commonConfig, {
   // Switch loaders to debug mode.
   //
   // See: http://webpack.github.io/docs/configuration.html#debug
+  // デバッグモード
   debug: true,
 
   // Developer tool to enhance debugging
@@ -94,6 +95,7 @@ module.exports = webpackMerge(commonConfig, {
   // Description: An extensible linter for the TypeScript language.
   //
   // See: https://github.com/wbuchwalter/tslint-loader
+  // アプリディレクトリの指定
   tslint: {
     emitErrors: false,
     failOnHint: false,

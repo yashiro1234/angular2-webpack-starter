@@ -37,9 +37,7 @@
 
 <body>
 
-  <app>
-    Loading...
-  </app>
+  <app>Loading...</app>
 
   <!-- Google Analytics: change UA-71073175-1 to be your site's ID -->
   <script>
@@ -48,16 +46,14 @@
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-71073175-1', 'auto');
+    ga('create', 'UA-XXXXXXXX-X', 'auto');
     ga('send', 'pageview');
   </script>
 
   <% if (webpackConfig.metadata.ENV === 'development') { %>
-  <!-- Webpack Dev Server reload -->
   <script src="/webpack-dev-server.js"></script>
   <% } %>
-  
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </body>
 </html>
