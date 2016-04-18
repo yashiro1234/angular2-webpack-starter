@@ -1,14 +1,26 @@
 <md-card>
   <md-card-content>
-    <span x-large>Your Content Here</span>
+    <span x-large>ユーザー登録</span>
 
-    <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
+    <!-- form #f="ngForm" (ngSubmit)="submitState(localState.value)" autocomplete="on"-->
+    <form *ngIf="active" (ngSubmit)="onSubmit()" #userForm="ngForm">
 
-      <md-input placeholder="氏名" [value]="localState.value"
+      <!--md-input placeholder="氏名" [value]="localState.value"
                 (input)="name = $event.target.value" autofocus>
       </md-input>
-      <md-input placeholder="email" [value]="email" (input)="email = $event.target.email" autofocus></md-input>
+      <br />
+      <div class="field"
+           [class.error]="!myForm.find('email').valid && myForm.find('email').touched">
+       <md-input placeholder="FormBuilder.name" [ngFormControl]="myForm.controls['name']"></md-input>
+       <md-input placeholder="FormBuilder.email" [ngFormControl]="myForm.controls['email']"
+        #email="ngForm"></md-input>
+      </div>
+      <div *ngIf="!myForm.valid">Emailが正しくありません</div-->
 
+      <md-input required [(ngModel)]="model.name" ngControl="name" #name="ngForm" placeholder="氏名"></md-input>
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">名前が正しくありません</div>
+
+      <br />
       <button md-raised-button color="primary">登録</button>
     </form>
   </md-card-content>

@@ -1,13 +1,19 @@
 import {Component} from 'angular2/core';
-import {AppState} from '../app.service';
+import {CORE_DIRECTIVES
+  , FORM_DIRECTIVES
+  , FormBuilder
+  , ControlGroup
+  , Validators
+  , NgClass
+  , NgForm
+} from 'angular2/common';
+import {EmailValidator} from "./../validator/validators";
+import {User} from "./user";
 
 @Component({
-  // The selector is what angular internally uses
-  // for `document.querySelectorAll(selector)` in our index.html
-  // where, in this case, selector is the string 'home'
   selector: 'user',
   providers: [ ],
-  directives: [ ],
+  directives: [ CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, EmailValidator ],
   pipes: [ ],
   styles: [ require('./user.css') ],
   template: require('./input.html')
@@ -15,25 +21,52 @@ import {AppState} from '../app.service';
 /**
  * Userクラス
  */
-export class User {
-  // Set our default values
-  localState = { value: '' };
+export class UserFormComponent {
 
-  name:string;
-  email:string;
-  // TypeScript public modifiers
-  constructor(public appState: AppState) {
+  model = new User("開発太郎", "hoge@example.com");
 
+  submitted = false;
+
+  onSubmit() {
+    this.submitted = true;
   }
 
+  active = true;
+
+  newUser() {
+    this.model = new User('', '');
+    this.active = false;
+    setTimeout(() => this.active = true, 0);
+  }
+
+  showFormControls(form:NgForm) {
+    return form && form.controls['name'] && form.controls['name'].value;
+  }
+
+
   ngOnInit() {
-    console.log('hello `User` component');
+    console.log('User:ngOnInit');
     // this.title.getData().subscribe(data => this.data = data);
   }
 
-  submitState(value) {
-    console.log('submitState', value);
-    this.appState.set('value', value);
+  /*
+  ngOnDestroy() {
+    console.log("User:ngOnDestroy");
   }
-
+  ngDoCheck() {
+    console.log("User:ngDoCheck");
+  }
+  ngOnChenges(chenges) {
+    console.log("User:ngOnChenges");
+  }
+  ngAfterContentInit() {
+    console.log("User:ngAfterContentInit");
+  }
+  ngAfterViewInit() {
+    console.log("User:ngAfterViewInit");
+  }
+  ngAfterViewChecked() {
+    console.log("User:ngAgterViewChecked");
+  }
+  */
 }

@@ -4,7 +4,7 @@
 import {Component, ViewEncapsulation} from 'angular2/core';
 import {RouteConfig, Router} from 'angular2/router';
 
-import {User} from './user';
+import {UserFormComponent} from './user/user.component';
 import {Home} from './home';
 import {AppState} from './app.service';
 import {RouterActive} from './router-active';
@@ -19,29 +19,11 @@ import {RouterActive} from './router-active';
   providers: [ ],
   directives: [ RouterActive ],
   encapsulation: ViewEncapsulation.None,
-  styles: [`
-    body {
-      margin: 0;
-    }
-    md-toolbar ul {
-      display: inline;
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      width: 60px;
-    }
-    md-toolbar li {
-      display: inline;
-    }
-    md-toolbar li.active {
-      background-color: lightgray;
-    }
-  `],
   templateUrl: '/app/app.component.html'
 })
 @RouteConfig([
   { path: '/',      name: 'Index', component: Home, useAsDefault: true },
-  { path: '/user', name: 'User', component: User },
+  { path: '/user', name: 'User', component: UserFormComponent },
   { path: '/home',  name: 'Home',  component: Home },
   // Async load a component using Webpack's require with es6-promise-loader and webpack `require`
   { path: '/about', name: 'About', loader: () => require('es6-promise!./about')('About') },
