@@ -17,11 +17,21 @@
       </div>
       <div *ngIf="!myForm.valid">Emailが正しくありません</div-->
 
-      <md-input required [(ngModel)]="model.name" ngControl="name" #name="ngForm" placeholder="氏名"></md-input>
-      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">名前が正しくありません</div>
-
-      <br />
-      <button md-raised-button color="primary">登録</button>
+      <div class="form-group">
+        <md-input required [(ngModel)]="model.name" ngControl="name" #name="ngForm" placeholder="氏名"></md-input>
+        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">名前が正しくありません</div>
+      </div>
+      <div class="form-group">
+        <md-input required [(ngModel)]="model.email" ngControl="email" #email="ngForm" placeholder="Email"></md-input>
+      </div>
+      <br/>
+      <button md-raised-button [disabled]="!userForm.form.valid" color="primary">登録</button>
+      <button md-raised-button class="btn btn-default" (click)="newUser()">New User</button>
     </form>
+  </md-card-content>
+</md-card>
+<md-card>
+  <md-card-content>
+    <pre>{{this || json}}</pre>
   </md-card-content>
 </md-card>
