@@ -13,12 +13,8 @@ export class UserService {
 }
 
 var USERS = [
-  new User(11, 'Mr. Nice'),
-  new User(12, 'Narco'),
-  new User(13, 'Bombasto'),
-  new User(14, 'Celeritas'),
-  new User(15, 'Magneta'),
-  new User(16, 'RubberMan')
+  new User(11, 'Mr. Nice', 'hoge@example.com'),
+  new User(12, 'RubberMan', 'fuga@example.com')
 ];
 
 var usersPromise = Promise.resolve(USERS);

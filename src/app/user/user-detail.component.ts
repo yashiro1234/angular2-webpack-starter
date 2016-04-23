@@ -1,11 +1,24 @@
-import {Component,  OnInit}  from 'angular2/core';
+import {Component, OnInit}  from 'angular2/core';
+import {Validators} from 'angular2/common';
 import {User, UserService}   from './user.service';
 import {RouteParams, Router} from 'angular2/router';
 
 @Component({
+  styles:[`
+    .ng-valid.ng-dirty {
+      border-left: 5px solid lightgreen;
+    }
+    .ng-invalid.ng-dirty {
+      border-left: 5px solid lightpink;
+    }
+    .form-invalid { background-color: lightpink; }
+    .form-valid { background-color: lightgreen; }
+    form { padding: 10px;}
+  `],
   template: require('./user-detail.component.html')
 })
 export class UserDetailComponent implements OnInit  {
+  
   user: User;
 
   constructor(
@@ -24,5 +37,8 @@ export class UserDetailComponent implements OnInit  {
     // so that the HeroList component can select that hero.
     // Add a totally useless `foo` parameter for kicks.
     this._router.navigate(['Users',  {id: userId, foo: 'foo'} ]);
+  }
+  onSubmit(user){
+    this.user = user;
   }
 }

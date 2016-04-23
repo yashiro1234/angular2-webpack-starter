@@ -8,7 +8,10 @@ import {CORE_DIRECTIVES
   , NgForm
 } from 'angular2/common';
 import {EmailValidator} from "./../validator/validators";
-import {User} from "./user";
+import {UserListComponent} from './user-list.component';
+import {UserDetailComponent} from './user-detail.component';
+
+import {UserService} from './user.service';
 
 @Component({
   selector: 'user',
@@ -22,7 +25,7 @@ import {User} from "./user";
  * Userクラス
  */
 export class UserFormComponent {
-
+/*
   model = new User("開発太郎", "hoge@example.com");
 
   submitted = false;
@@ -48,7 +51,7 @@ export class UserFormComponent {
     console.log('User:ngOnInit');
     // this.title.getData().subscribe(data => this.data = data);
   }
-
+*/
   /*
   ngOnDestroy() {
     console.log("User:ngOnDestroy");
