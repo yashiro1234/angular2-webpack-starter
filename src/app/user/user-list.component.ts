@@ -1,10 +1,12 @@
-import {Component, OnInit}   from 'angular2/core';
+import {Component, OnInit}   from '@angular/core';
 import {User} from './user';
 import {UserService} from './user.service';
-import {Router, RouteParams} from 'angular2/router';
-
+import {UserDetailComponent} from './user-detail.component';
+import {Router,RouteParams} from '@angular/router-deprecated';
 @Component({
-  template: require('./user-list.component.html')
+  template: require('./user-list.component.html'),
+  providers: [UserService],
+  directives: [UserDetailComponent]
 })
 export class UserListComponent implements OnInit {
 
@@ -16,17 +18,20 @@ export class UserListComponent implements OnInit {
               private _router:Router,
               routeParams:RouteParams) {
     this._selectedId = +routeParams.get('id');
+    console.log('constructor:' + this._selectedId);
   }
 
   isSelected(user:User) {
     return user.id === this._selectedId;
   }
 
-  onSelect(user:User) {
-    this._router.navigate(['UserDetail', {id: user.id}]);
+  ngOnInit() {
+    console.log("user-list.component実行");
+    this._service.getUsers().then(users => this.users = users)
   }
 
-  ngOnInit() {
-    this._service.getUsers().then(users => this.users = users)
+  onSelect(user:User) {
+    console.log('onSelect:' + user.id);
+    this._router.navigate(['UserDetail', {id: user.id}]);
   }
 }

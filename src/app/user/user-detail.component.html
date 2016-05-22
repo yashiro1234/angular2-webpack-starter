@@ -1,53 +1,32 @@
-<!--h2>USERS</h2>
-<div *ngIf="user">
-  <h3>"{{user.name}}"</h3>
-  <form>
-    <div class="well">
-      <div class="form-group">
-        <label>Id:{{user.id}}</label>
-        <br/>
-        <input required [(ngModel)]="user.name" placeholder="氏名"/>
-        <br/>
-        <input [(ngModel)]="user.email" placeholder="Email"/>
-        <p>
-          <button (click)="gotoUsers()" class="md-raised-button">戻る</button>
-        </p>
-      </div>
-    </div>
-  </form>
-</div-->
 <strong>Angular2のフォームで入力チェック、CSS設定</strong>
-<form (ngSubmit)="onSubmit(userForm.value)" #userForm="ngForm" novalidate
-      [ngClass]="userForm.form.valid ? 'form-valid' : 'form-invalid'">
-  <div class="well">
-    <div class="form-group">
-      <label>会員名（必須項目、半角英大文字、数値5～10文字）</label>
-      <input type="text" class="form-control" required
-             ngControl="name" #v_name="ngForm"
-             minlength="5" maxlength="10" pattern="[A-Z0-9]+"/>
-      <div *ngIf="v_name.dirty && v_name.errors">
-      <span class="text-danger" [hidden]="!v_name.errors.required">必須項目</span>
-      <span class="text-danger" [hidden]="!v_name.errors.minlength ">最小文字数：5</span>
-      <span class="text-danger" [hidden]="!v_name.errors.maxlength ">最大文字数：10</span>
-      <span class="text-danger" [hidden]="!v_name.errors.pattern">文字種：半角英大文字、数字</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label>メールアドレス（必須項目、メールフォーマットチェック）</label>
-      <input type="email" class="form-control" required
-             ngControl="email" #v_email="ngForm"
-             pattern="[A-Za-z0-9.\-]+@[A-Za-z0-9\-]+[.][A-Za-z0-9.\-]+" />
-      <div *ngIf="v_email.dirty && v_email.errors">
-      <span class="text-danger" [hidden]="!v_email.errors.required ">必須項目</span>
-      <span class="text-danger" [hidden]="!v_email.errors.pattern ">メールフォーマットエラー</span>
-      </div>
-    </div>
-    <div class="text-center">
-      <button type="submit" class="btn btn-primary" [disabled]="!userForm.form.valid">登録</button>
-    </div>
+<!--
+<form (submit)="saveUser()" [ngFormModel]="userForm">
+  <div class="form-group">
+    <label>会員名（必須項目、半角英大文字、数値5～10文字）</label>
+  </div>
+  <div class="form-group">
+    <label>メールアドレス（必須項目、メールフォーマットチェック）</label>8
+  </div>
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">登録</button>
   </div>
 </form>
-<div class="well" ng-if="user">
-  <strong>入力内容</strong><br />
-  {{user | json}}
+-->
+<div class="well">
+  <section>
+    <strong>入力内容</strong><br/>
+    {{user | json}}
+  </section>
+  <br/>
+  <section>
+    <div *ngIf="user">
+      <h3>{{user.name}}</h3>
+      <label>id:{{user.id}}</label>
+      <br />
+      <input [(ngModel)]="user.name" placeholder="氏名" />
+      <p>
+        <button (click)="gotoUsers()">一覧に戻る</button>
+      </p>
+    </div>
+  </section>
 </div>

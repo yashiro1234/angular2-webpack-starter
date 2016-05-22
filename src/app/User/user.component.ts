@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {CORE_DIRECTIVES
   , FORM_DIRECTIVES
   , FormBuilder
@@ -6,7 +6,8 @@ import {CORE_DIRECTIVES
   , Validators
   , NgClass
   , NgForm
-} from 'angular2/common';
+} from '@angular/common';
+import {RouteConfig, Router, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {EmailValidator} from "./../validator/validators";
 import {UserListComponent} from './user-list.component';
 import {UserDetailComponent} from './user-detail.component';
@@ -16,14 +17,15 @@ import {UserService} from './user.service';
 @Component({
   selector: 'user',
   providers: [ ],
-  directives: [ CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, EmailValidator ],
+  directives: [ ROUTER_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, EmailValidator ],
   pipes: [ ],
   styles: [ require('./user.css') ],
   template: require('./input.html')
 })
-/**
- * Userクラス
- */
+@RouteConfig([
+  { path: '/user', name: 'User', component: UserListComponent },
+  { path: '/user/:id', name: 'UserDetail', component: UserDetailComponent}
+])
 export class UserFormComponent {
 /*
   model = new User("開発太郎", "hoge@example.com");
@@ -45,13 +47,12 @@ export class UserFormComponent {
   showFormControls(form:NgForm) {
     return form && form.controls['name'] && form.controls['name'].value;
   }
-
+*/
 
   ngOnInit() {
-    console.log('User:ngOnInit');
-    // this.title.getData().subscribe(data => this.data = data);
+    console.log('Hello user.component');
   }
-*/
+
   /*
   ngOnDestroy() {
     console.log("User:ngOnDestroy");
