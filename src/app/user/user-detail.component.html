@@ -20,13 +20,44 @@
   <br/>
   <section>
     <div *ngIf="user">
-      <h3>{{user.name}}</h3>
+      <h3>{{editName}}</h3>
       <label>id:{{user.id}}</label>
-      <br />
-      <input [(ngModel)]="user.name" placeholder="氏名" />
-      <p>
-        <button (click)="gotoUsers()">一覧に戻る</button>
-      </p>
+      <br/>
+      <input [(ngModel)]="editName" placeholder="氏名"/>
+      <input [(ngModel)]="editEmail" placeholder="email"/>
+      <div>
+        <div [ngSwitch]="user">
+          <button *ngSwitchWhen=null (click)="add()">新規</button>
+          <button *ngSwitchDefault (click)="save()">保存</button>
+        </div>
+        <button (click)="cancel()">キャンセル</button>
+      </div>
     </div>
+  </section>
+  <section>
+    <h2>テンプレート駆動のForm</h2>
+    <form #form="ngForm" (submit)="logForm(form.value)">
+      <div>
+        <label>name:</label>
+        <input type="text" ngControl="name" placeholder="氏名">
+      </div>
+      <div>
+        <label>email</label>
+        <input type="email" ngControl="email" placeholder="Email">
+      </div>
+
+      <fieldset ngControlGroup="address">
+        <label>Street:</label>
+        <input type="text" ngControl="street">
+
+        <label>Zip:</label>
+        <input type="text" ngControl="zip">
+
+        <label>City:</label>
+        <input type="text" ngControl="city">
+      </fieldset>
+
+      <button type="submit">Submit</button>
+    </form>
   </section>
 </div>

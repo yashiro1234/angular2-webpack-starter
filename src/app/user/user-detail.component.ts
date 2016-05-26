@@ -1,11 +1,11 @@
 import {Component, OnInit}  from '@angular/core';
 import {Control} from '@angular/common';
+import {Router, RouteParams} from '@angular/router-deprecated';
 import {User} from './user';
 import {UserService}   from './user.service';
-import {Router, RouteParams} from '@angular/router-deprecated';
 
 @Component({
-  styles:[`
+  styles: [`
     .ng-valid.ng-dirty {
       border-left: 5px solid lightgreen;
     }
@@ -18,41 +18,63 @@ import {Router, RouteParams} from '@angular/router-deprecated';
   `],
   template: require('./user-detail.component.html'),
   directives: [],
-  providers: [UserService]
+  providers: [UserService],
+  exportAs: 'draggable'
 })
 
-export class UserDetailComponent implements OnInit  {
+export class UserDetailComponent implements OnInit {
 
-  user: User;
+  user:User;
+  editName:string;
+  editEmail:string;
 
-  name: Control;
-  email: Control;
+  name:Control;
+  email:Control;
 
-  constructor(
-    private _router:Router,
-    private _routeParams:RouteParams,
-    private _service:UserService){
+  constructor(private _router:Router,
+              private _routeParams:RouteParams,
+              private _service:UserService) {
   }
 
   ngOnInit() {
     console.log(this._service);
     let id = this._routeParams.get('id');
-    let user: User = this._service.getUser(id).then(user => this.user = user);
-    this.user = user;
-    //this.user = this._service.getUserMock();
+    this.user = this._service.getUser(id).then(user => {
+      if (user) {
+        this.editName = user.name;
+        this.editEmail = user.email;
+        this.user = user;
+      } else {
+       user = null;
+      }
+    });
   }
+
+  add() {
+    this._service.addUser(this.editName, this.editEmail);
+    this.gotoUsers();
+  }
+
+  save() {
+    this.user.name = this.editName;
+    this.user.email = this.editEmail;
+    this.gotoUsers();
+  }
+
+  cancel() {
+    this.editName = this.user.name;
+    this.editEmail = this.user.email;
+    this.gotoUsers();
+  }
+
 
   gotoUsers() {
     let userId = this.user ? this.user.id : null;
-    // Pass along the hero id if available
-    // so that the HeroList component can select that hero.
-    // Add a totally useless `foo` parameter for kicks.
-    this._router.navigate(['User',  {id: userId, foo: 'foo'} ]);
+    this._router.navigate(['User', {id: userId, foo: 'foo'}]);
   }
-  onSubmit(user){
-    this.user = user;
-  }
-  saveUser(){
-    alert("saveUser実行");
+
+  logForm(value:any) {
+    console.log(value);
+    this.gotoUsers();
   }
 }

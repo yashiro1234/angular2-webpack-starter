@@ -1,4 +1,5 @@
 <h2>USERS</h2>
+<button (click)="addUser()">新規</button>
 <ul class="items">
   <li *ngFor="let user of users;" [class.selected]="isSelected(user)" (click)="onSelect(user)">
     <span class="badge">{{user.id}}</span>

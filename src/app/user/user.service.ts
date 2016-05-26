@@ -14,6 +14,16 @@ export class UserService {
   getUser(id:number | string) {
     return usersPromise.then(user => user.filter(h => h.id === +id)[0]);
   }
+
+  static nextUserId = 100;
+
+  addUser(name:string, email:string) {
+    name = name.trim();
+    if (name) {
+      let user = new User(UserService.nextUserId++, name, email);
+      usersPromise.then(users => users.push(user));
+    }
+  }
 }
 
 var USERS = [

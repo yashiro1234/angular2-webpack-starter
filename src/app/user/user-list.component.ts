@@ -34,4 +34,9 @@ export class UserListComponent implements OnInit {
     console.log('onSelect:' + user.id);
     this._router.navigate(['UserDetail', {id: user.id}]);
   }
+
+  addUser() {
+    console.log("addUser");
+    this._router.navigate(['UserDetail', {id:""} ]);
+  }
 }
