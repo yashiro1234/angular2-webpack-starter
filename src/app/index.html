@@ -1,9 +1,9 @@
-<md-toolbar color="primary">
+<div color="primary">
   <span>{{ name }}</span>
   <nav>
     <ul>
       <li router-active>
-        <a [routerLink]=" ['Index'] ">Index</a>
+        <a [routerLink]=" ['Main'] ">Main</a>
       </li>
       <li router-active>
         <a [routerLink]=" ['Home'] ">Home</a>
@@ -16,7 +16,7 @@
       </li>
     </ul>
   </nav>
-</md-toolbar>
+</div>
 
 <main>
   <router-outlet></router-outlet>

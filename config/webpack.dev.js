@@ -159,5 +159,22 @@ module.exports = webpackMerge(commonConfig, {
     clearImmediate: false,
     setImmediate: false
   }
+  /*
+  module: {
+
+    loaders: [
+      { test: /\.css$/, loader: "style!css" },
+      {
+        test: /\.sass$/,
+        loaders: ["style", "css", "sass"]
+      }
+
+      {
+        test: /\.scss$/,
+        loaders: ["style", "css", "scss"]
+      }
+    ]
+  }
+*/
 
 });

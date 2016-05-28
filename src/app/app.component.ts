@@ -2,12 +2,16 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import {RouteConfig} from '@angular/router-deprecated';
 import {AppState} from './app.service';
 import {RouterActive} from './router-active';
+/** Main */
+import {Main} from './main';
 /** Home */
 import {Home} from './home';
 /** ユーザ管理機能 */
 import {UserListComponent} from './user/user-list.component';
 import {UserDetailComponent} from './user/user-detail.component';
 import {UserService} from './user/user.service';
+
+import {BUTTON_DIRECTIVES, TAB_DIRECTIVES} from 'ng2-bootstrap';
 
 @Component({
   selector: 'app',
@@ -36,7 +40,7 @@ import {UserService} from './user/user.service';
   template: require('./index.html')
 })
 @RouteConfig([
-  { path: '/',      name: 'Index', component: Home, useAsDefault: true },
+  { path: '/',      name: 'Main', component: Main, useAsDefault: true },
   { path: '/user', name: 'User', component: UserListComponent },
   {path: '/user/:id', name: 'UserDetail', component: UserDetailComponent},
 //  { path: '/dynamic', name: 'Dynamic', component: DynamicForm},
